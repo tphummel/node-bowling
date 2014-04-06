@@ -1,0 +1,38 @@
+{
+  "name": "bowling",
+  "version": "0.0.0",
+  "description": "bowling scoring module",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test node test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tphummel/node-bowling.git"
+  },
+  "keywords": [
+    "scoresheet",
+    "bowling",
+    "score",
+    "scoring",
+    "sport",
+    "strike",
+    "spare"
+  ],
+  "author": {
+    "name": "Tom Hummel",
+    "email": "tphummel@gmail.com",
+    "url": "tomhummel.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tphummel/node-bowling/issues"
+  },
+  "homepage": "https://github.com/tphummel/node-bowling",
+  "devDependencies": {
+    "tape": "~2.3.2"
+  }
+}
