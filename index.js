@@ -45,10 +45,8 @@ function isSpare(frame) {
 function scoreFrame (frame) {
   var score;
 
-  if(frame === 'X'){
+  if(isStrike(frame) || isSpare(frame)){
     score = null;
-  }else if(frame.match(/\//)){
-    score =  null;
   }else{
     var addable = frame.replace(/\-/,'0');
     score = 0;
