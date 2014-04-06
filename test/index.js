@@ -28,3 +28,19 @@ test('too many frames should throw', function(t){
 
   t.end();
 });
+
+test('invalid frame should throw', function(t){
+  t.throws(function(){
+    lib(['78']);
+  }, Error);
+
+  t.throws(function(){
+    lib(['787']);
+  }, Error);
+
+  t.throws(function(){
+    lib(['']);
+  }, Error);
+
+  t.end();
+});
