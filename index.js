@@ -101,6 +101,8 @@ module.exports = function parseGame (game) {
   var scoresheet = [],
       totalScore = 0;
 
+  if(game.length > 10) throw new Error('too many frames');
+
   for(var i=0; i<game.length; i++ ) {
     var frame = game[i],
         pFrame1, pFrame2;

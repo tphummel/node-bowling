@@ -19,3 +19,12 @@ test('a complete game', function(t){
   t.deepEqual(result, expected);
   t.end();
 });
+
+test('too many frames should throw', function(t){
+  t.throws(function(){
+    lib(['81','9-','9/','71','9-','X','90','70','x','7-','x']);
+
+  }, Error);
+
+  t.end();
+});
