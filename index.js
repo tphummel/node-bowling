@@ -10,7 +10,7 @@ function validateFrame (result, isTenthFrame) {
   }
 }
 
-function normalizeResult (result) {
+function normalizeFrame (result) {
   result = result.replace(/0/,'-');
   result = result.toUpperCase();
   return result;
@@ -21,7 +21,7 @@ function parseFrame (result, isTenthFrame) {
   if(typeof result !== 'string') result = result + '';
 
   validateFrame(result, isTenthFrame);
-  result = normalizeResult(result);
+  result = normalizeFrame(result);
   return result;
 
 }
