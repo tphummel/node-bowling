@@ -44,3 +44,40 @@ test('invalid frame should throw', function(t){
 
   t.end();
 });
+
+
+test('second complete game', function(t){
+  var result = lib(['80','x','1/','7/','90','6-','x','43','62','8/6']);
+  var expected = [
+    {outcome: '8-', cumulative: 8, score: 8},
+    {outcome: 'X', cumulative: 28, score: 20},
+    {outcome: '1/', cumulative: 45, score: 17},
+    {outcome: '7/', cumulative: 64, score: 19},
+    {outcome: '9-', cumulative: 73, score: 9},
+    {outcome: '6-', cumulative: 79, score: 6},
+    {outcome: 'X', cumulative: 96, score: 17},
+    {outcome: '43', cumulative: 103, score: 7},
+    {outcome: '62', cumulative: 111, score: 8},
+    {outcome: '8/6', cumulative: 127, score: 16}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});
+
+test('strikeout to finish', function(t){
+  var result = lib(['80','x','1/','7/','90','6-','x','43','X','xxX']);
+  var expected = [
+    {outcome: '8-', cumulative: 8, score: 8},
+    {outcome: 'X', cumulative: 28, score: 20},
+    {outcome: '1/', cumulative: 45, score: 17},
+    {outcome: '7/', cumulative: 64, score: 19},
+    {outcome: '9-', cumulative: 73, score: 9},
+    {outcome: '6-', cumulative: 79, score: 6},
+    {outcome: 'X', cumulative: 96, score: 17},
+    {outcome: '43', cumulative: 103, score: 7},
+    {outcome: 'X', cumulative: 133, score: 30},
+    {outcome: 'XXX', cumulative: 163, score: 30}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});

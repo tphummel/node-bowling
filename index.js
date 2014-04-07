@@ -95,6 +95,36 @@ function updateCumulatives(scoresheet) {
   return scoresheet;
 }
 
+function scoreTenthFrame(frame) {
+  score = 0
+
+  if(isStrike(frame[0])){
+    score += 10;
+    if(isStrike(frame[1])){
+      score += 10;
+      if(isStrike(frame[2])){
+        score += 10;
+      }else{
+        score += scoreFrame(frame[2]);
+      }
+    }else{
+      if(isSpare(frame.substr(1,2))){
+        score += 10;
+      }else{
+        score += scoreFrame(frame.substr(1,2));
+      }
+    }
+  }else if(isSpare(frame.substr(0,2))){
+    score += 10;
+    score += scoreFrame(frame[2]);
+  }else{
+    score += scoreFrame(frame);
+  }
+
+  return score;
+
+}
+
 module.exports = function parseGame (game) {
   var scoresheet = [],
       totalScore = 0;
@@ -161,6 +191,10 @@ module.exports = function parseGame (game) {
           }
         }
       }
+    }
+
+    if(isTenthFrame){
+      scoresheet[i].score = scoreTenthFrame(scoresheet[i].outcome);
     }
   }
 
