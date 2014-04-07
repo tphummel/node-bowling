@@ -81,3 +81,16 @@ test('strikeout to finish', function(t){
   t.deepEqual(result, expected);
   t.end();
 });
+
+test('an incomplete game', function(t){
+  var result = lib(['80','x','1/','7/','9']);
+  var expected = [
+    {outcome: '8-', cumulative: 8, score: 8},
+    {outcome: 'X', cumulative: 28, score: 20},
+    {outcome: '1/', cumulative: 45, score: 17},
+    {outcome: '7/', cumulative: 64, score: 19},
+    {outcome: '9', cumulative: 73, score: 9}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});
