@@ -94,3 +94,21 @@ test('an incomplete game', function(t){
   t.deepEqual(result, expected);
   t.end();
 });
+
+test('did someone say "a perfect game"?', function(t){
+  var result = lib(['x','x','x','X','x','X','X','X','X','xxX']);
+  var expected = [
+    {outcome: 'X', cumulative: 30, score: 30},
+    {outcome: 'X', cumulative: 60, score: 30},
+    {outcome: 'X', cumulative: 90, score: 30},
+    {outcome: 'X', cumulative: 120, score: 30},
+    {outcome: 'X', cumulative: 150, score: 30},
+    {outcome: 'X', cumulative: 180, score: 30},
+    {outcome: 'X', cumulative: 210, score: 30},
+    {outcome: 'X', cumulative: 240, score: 30},
+    {outcome: 'X', cumulative: 270, score: 30},
+    {outcome: 'XXX', cumulative: 300, score: 30}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});
