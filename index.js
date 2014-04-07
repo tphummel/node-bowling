@@ -103,9 +103,10 @@ module.exports = function parseGame (game) {
 
   for(var i=0; i<game.length; i++ ) {
     var frame = game[i],
-        pFrame1, pFrame2;
+        pFrame1, pFrame2,
+        isTenthFrame = i===9;
 
-    frame = parseFrame(frame, i===9);
+    frame = parseFrame(frame, isTenthFrame);
 
     scoresheet[i] = {
       outcome: frame,
