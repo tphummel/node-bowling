@@ -1,7 +1,7 @@
 {
   "name": "bowling",
   "version": "0.0.0",
-  "description": "bowling scoring module",
+  "description": "bowling scorekeeping module",
   "main": "index.js",
   "directories": {
     "test": "test"

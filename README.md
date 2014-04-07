@@ -3,7 +3,8 @@
 
 apply scoring logic to bowling results
 
-[![Build Status](https://travis-ci.org/{{author}}/node-bowling.png)](https://travis-ci.org/{{author}}/node-bowling)
+[![Build Status](https://travis-ci.org/tphummel/node-bowling.png)](https://travis-ci.org/tphumeml/node-bowling)
+
 [![NPM](https://nodei.co/npm/bowling.png?downloads=true)](https://nodei.co/npm/bowling/)
 
 # install
