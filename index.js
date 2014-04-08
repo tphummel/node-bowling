@@ -26,20 +26,10 @@ function parseFrame (result, isTenthFrame) {
 
 }
 
-function isStrike(frame) {
-  if(frame === 'X'){
-    return true;
-  }else{
-    return false;
-  }
-}
+function isStrike(frame) { return frame === 'X'; }
 
 function isSpare(frame) {
-  if(frame.length === 2 && frame.match(/\//)){
-    return true;
-  }else{
-    return false;
-  }
+  return frame.length === 2 && frame.match(/\//);
 }
 
 function scoreFrame (frame) {
