@@ -1,12 +1,17 @@
-function validateFrame (result, isTenthFrame) {
-  if(result.length == 0){
-    throw new Error('frame must not be empty: '+result);
-  }else if(result.length > 3) {
-    throw new Error('frame must be less than 4 chars: '+result);
-  }else if(result.length === 3 && !isTenthFrame) {
-    throw new Error('frame length too long for frames 1-9: '+result);
-  }else if(result[0] === '/'){
-    throw new Error("first throw of a frame can't be '/'");
+var tenthPattern = new RegExp('^[X0-9\-]{1}[X0-9\-\/]?[X0-9\-\/]?$','i');
+var basicPattern = new RegExp('^[X0-9\-]{1}[0-9\-\/]?$', 'i');
+
+function validateFrame (frame, isTenthFrame) {
+  if(frame.length == 0){
+    throw new Error('frame must not be empty: '+frame);
+  }else if(frame.length > 3) {
+    throw new Error('frame must be less than 4 chars: '+frame);
+  }else if(frame.length === 3 && !isTenthFrame) {
+    throw new Error('frame length too long for frames 1-9: '+frame);
+  }else if(isTenthFrame && !tenthPattern.test(frame)){
+    throw new Error('failed tenth frame validation'+frame);
+  }else if(!isTenthFrame && !basicPattern.test(frame)){
+    throw new Error('failed normal frame validation'+frame);
   }
 }
 
