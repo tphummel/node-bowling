@@ -116,3 +116,31 @@ test('did someone say "a perfect game"?', function(t){
   t.deepEqual(result, expected);
   t.end();
 });
+
+test('zero frame', function(t){
+  var gm1 = ['--'];
+  var result = lib(gm1);
+  var expected = [
+    {outcome: '--', cumulative: 0, score: 0}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});
+
+test('fail 10th frame', function(t){
+  var result = lib(['x','x','x','X','x','X','X','X','X','00']);
+  var expected = [
+    {outcome: 'X', cumulative: 30, score: 30},
+    {outcome: 'X', cumulative: 60, score: 30},
+    {outcome: 'X', cumulative: 90, score: 30},
+    {outcome: 'X', cumulative: 120, score: 30},
+    {outcome: 'X', cumulative: 150, score: 30},
+    {outcome: 'X', cumulative: 180, score: 30},
+    {outcome: 'X', cumulative: 210, score: 30},
+    {outcome: 'X', cumulative: 230, score: 20},
+    {outcome: 'X', cumulative: 240, score: 10},
+    {outcome: '--', cumulative: 240, score: 0}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});

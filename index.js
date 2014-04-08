@@ -16,7 +16,7 @@ function validateFrame (frame, isTenthFrame) {
 }
 
 function normalizeFrame (result) {
-  result = result.replace(/0/,'-');
+  result = result.replace(/0/g,'-');
   result = result.toUpperCase();
   return result;
 }
@@ -43,7 +43,7 @@ function scoreFrame (frame) {
   if(isStrike(frame) || isSpare(frame)){
     score = null;
   }else{
-    var addable = frame.replace(/\-/,'0');
+    var addable = frame.replace(/\-/g,'0');
     score = 0;
     for(var c=0; c<addable.length; c++){
       score += parseInt(addable[c], 10);
