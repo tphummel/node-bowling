@@ -25,8 +25,8 @@ function parseFrame (result, isTenthFrame) {
   if(isTenthFrame === undefined) isTenthFrame = false;
   if(typeof result !== 'string') result = result + '';
 
-  validateFrame(result, isTenthFrame);
   result = normalizeFrame(result);
+  validateFrame(result, isTenthFrame);
   return result;
 
 }
