@@ -1,12 +1,12 @@
 function validateFrame (result, isTenthFrame) {
   if(result.length == 0){
     throw new Error('frame must not be empty: '+result);
-  }
-  if(result.length > 3) {
+  }else if(result.length > 3) {
     throw new Error('frame must be less than 4 chars: '+result);
-  }
-  if(result.length === 3 && !isTenthFrame) {
+  }else if(result.length === 3 && !isTenthFrame) {
     throw new Error('frame length too long for frames 1-9: '+result);
+  }else if(result[0] === '/'){
+    throw new Error("first throw of a frame can't be '/'");
   }
 }
 

@@ -42,6 +42,10 @@ test('invalid frame should throw', function(t){
     lib(['']);
   }, Error);
 
+  t.throws(function(){
+    lib(['/9']);
+  }, Error);
+
   t.end();
 });
 
