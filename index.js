@@ -116,44 +116,42 @@ module.exports = function parseGame (game) {
   if(game.length > 10) throw new Error('too many frames');
 
   for(var i=0; i<game.length; i++ ) {
-    var frame = game[i],
-        pFrame1, pFrame2,
-        isTenthFrame = i===9;
-
-    frame = parseFrame(frame, isTenthFrame);
+    var pFrame2,
+        isTenthFrame = i===9,
+        notFirstFrame = i>0,
+        notFirstTwoFrames = i>1,
+        cleanOutcome = parseFrame(game[i], isTenthFrame);
 
     scoresheet[i] = {
-      outcome: frame,
+      outcome: cleanOutcome,
       cumulative: null,
-      score: scoreFrame(frame)
+      score: scoreFrame(cleanOutcome)
     };
 
-    // attempt to close prev frame
+    if(notFirstFrame){
 
-    if(i > 0) {
-      pFrame1 = scoresheet[i-1];
-      if(pFrame1.score === null){
-        var bonus = 0, nextScores;
-        if(isStrike(pFrame1.outcome)) {
-          nextScores = getNextScores(scoresheet[i].outcome);
+      var prevFrame = scoresheet[i-1],
+          prevIsPending = prevFrame.score === null,
+          nextScores = getNextScores(scoresheet[i].outcome),
+          bonus = 0;
 
+      if(prevIsPending){
+        if(isStrike(prevFrame.outcome)){
           if(nextScores.length >= 2){
             bonus += nextScores[0];
             bonus += nextScores[1];
-            pFrame1.score = 10+bonus;
+            prevFrame.score = 10 + bonus;
           }
-        }else if (isSpare(pFrame1.outcome)) {
-          nextScores = getNextScores(scoresheet[i].outcome);
+        }else if(isSpare(prevFrame.outcome)){
           if(nextScores.length >= 1){
             bonus += nextScores[0];
-            pFrame1.score = 10+bonus;
+            prevFrame.score = 10 + bonus;
           }
         }
       }
     }
 
     // attempt to close frame before last
-
     if(i > 1) {
 
       pFrame2 = scoresheet[i-2];
@@ -176,6 +174,8 @@ module.exports = function parseGame (game) {
         }
       }
     }
+
+
 
     if(isTenthFrame){
       scoresheet[i].score = scoreTenthFrame(scoresheet[i].outcome);
