@@ -127,7 +127,7 @@ test('zero frame', function(t){
   t.end();
 });
 
-test('fail 10th frame', function(t){
+test('10th frame double miss', function(t){
   var result = lib(['x','x','x','X','x','X','X','X','X','00']);
   var expected = [
     {outcome: 'X', cumulative: 30, score: 30},
