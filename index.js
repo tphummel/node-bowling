@@ -20,21 +20,12 @@ function validateFrame (frame, isTenthFrame) {
   }
 }
 
-function normalizeFrame (result) {
+function parseFrame (result) {
+  if(typeof result !== 'string') result = result + '';
+
   result = result.replace(/0/g,'-');
   result = result.toUpperCase();
   return result;
-}
-
-// don't call validateFrame from inside here
-function parseFrame (result, isTenthFrame) {
-  if(isTenthFrame === undefined) isTenthFrame = false;
-  if(typeof result !== 'string') result = result + '';
-
-  result = normalizeFrame(result);
-  validateFrame(result, isTenthFrame);
-  return result;
-
 }
 
 function isStrike(frame) { return frame === 'X'; }
@@ -135,6 +126,8 @@ module.exports = function parseGame (game) {
         notFirstFrame = i>0,
         notFirstTwoFrames = i>1,
         cleanOutcome = parseFrame(game[i], isTenthFrame);
+
+    validateFrame(cleanOutcome, isTenthFrame);
 
     scoresheet[i] = {
       outcome: cleanOutcome,
