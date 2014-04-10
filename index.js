@@ -3,8 +3,9 @@
 // browserling test badge
 // support fouls, 'f', 'F' == '0', '-'
 
-var tenthPattern = new RegExp('^[X0-9\-]{1}[X0-9\-\/]?[X0-9\-\/]?$','i');
-var basicPattern = new RegExp('^[X0-9\-]{1}[0-9\-\/]?$', 'i');
+var tenthPattern = new RegExp('^[XF0-9\-]{1}[XF0-9\-\/]?[XF0-9\-\/]?$','i');
+var basicPattern = new RegExp('^[XF0-9\-]{1}[F0-9\-\/]?$', 'i');
+var zeroEquiv = new RegExp('[F\-]', 'g');
 
 function validateFrame (frame, isTenthFrame) {
   if(frame.length == 0){
@@ -40,7 +41,7 @@ function scoreFrame (frame) {
   if(isStrike(frame) || isSpare(frame)){
     score = null;
   }else{
-    var addable = frame.replace(/\-/g,'0');
+    var addable = frame.replace(zeroEquiv,'0');
     score = 0;
     for(var c=0; c<addable.length; c++){
       score += parseInt(addable[c], 10);
@@ -62,12 +63,12 @@ function getNextScores(f1, f2) {
   for(var t=0; t<nextThrows.length; t++) {
     var score, thw, prevThw;
 
-    thw = nextThrows[t].replace(/\-/g, '0');
+    thw = nextThrows[t].replace(zeroEquiv, '0');
 
     if(thw === 'X'){
       score = 10;
     }else if (thw === '/'){
-      prevThw = nextThrows[t-1].replace(/\-/g, '0');
+      prevThw = nextThrows[t-1].replace(zeroEquiv, '0');
       score = 10-parseInt(prevThw,10);
     }else{
       score = parseInt(thw,10);

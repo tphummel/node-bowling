@@ -41,3 +41,4 @@ apply scoring logic to bowling results
 
 - miss: `0` or `-`
 - strike: `x` or `X`
+- foul: `f` or `F`
