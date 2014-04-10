@@ -1,3 +1,8 @@
+// split frame functions to own file, w/ unit tests
+// replace for loops with something better looking
+// browserling test badge
+// support fouls, 'f', 'F' == '0', '-'
+
 var tenthPattern = new RegExp('^[X0-9\-]{1}[X0-9\-\/]?[X0-9\-\/]?$','i');
 var basicPattern = new RegExp('^[X0-9\-]{1}[0-9\-\/]?$', 'i');
 
@@ -21,6 +26,7 @@ function normalizeFrame (result) {
   return result;
 }
 
+// don't call validateFrame from inside here
 function parseFrame (result, isTenthFrame) {
   if(isTenthFrame === undefined) isTenthFrame = false;
   if(typeof result !== 'string') result = result + '';
@@ -53,6 +59,9 @@ function scoreFrame (frame) {
   return score;
 }
 
+// should accept array of leading frame outcomes
+// return array of throw scores
+// change name of fn
 function getNextScores(f1, f2) {
   if(f1 === undefined) f1 = '';
   if(f2 === undefined) f2 = '';
@@ -90,6 +99,8 @@ function updateCumulatives(scoresheet) {
   return scoresheet;
 }
 
+// this should not credit a strike/spare until sufficient subsequent shots completed
+// add test: X to begin 10th frame. should settle prior frames, but 10th is pending
 function scoreTenthFrame(frame) {
   score = 0
 
@@ -113,9 +124,12 @@ module.exports = function parseGame (game) {
   var scoresheet = [],
       totalScore = 0;
 
+  // validate game fn
   if(game.length > 10) throw new Error('too many frames');
 
   for(var i=0; i<game.length; i++ ) {
+
+    // all of this in a processFrame fn
     var pFrame2,
         isTenthFrame = i===9,
         notFirstFrame = i>0,
@@ -130,6 +144,7 @@ module.exports = function parseGame (game) {
 
     if(notFirstFrame){
 
+      // should be own fn
       var prevFrame = scoresheet[i-1],
           prevIsPending = prevFrame.score === null,
           nextScores = getNextScores(scoresheet[i].outcome),
@@ -157,6 +172,7 @@ module.exports = function parseGame (game) {
       pFrame2 = scoresheet[i-2];
       if(pFrame2.score === null){
         var bonus = 0, nextScores;
+      // should be own fn
 
         if(isStrike(pFrame2.outcome)) {
           nextScores = getNextScores(scoresheet[i-1].outcome, scoresheet[i].outcome);
