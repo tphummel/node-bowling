@@ -167,31 +167,30 @@ module.exports = function parseGame (game) {
     }
 
     // attempt to close frame before last
-    if(i > 1) {
+    if(notFirstTwoFrames) {
+      var prevFrame = scoresheet[i-2],
+          prevIsPending = prevFrame.score === null,
+          nextScores = nextScores = getNextScores(scoresheet[i-1].outcome, scoresheet[i].outcome)
+          bonus = 0;
 
-      pFrame2 = scoresheet[i-2];
-      if(pFrame2.score === null){
-        var bonus = 0, nextScores;
       // should be own fn
+      if(prevIsPending){
 
-        if(isStrike(pFrame2.outcome)) {
-          nextScores = getNextScores(scoresheet[i-1].outcome, scoresheet[i].outcome);
+        if(isStrike(prevFrame.outcome)) {
+
           if(nextScores.length >= 2){
             bonus += nextScores[0];
             bonus += nextScores[1];
-            pFrame2.score = 10+bonus;
+            prevFrame.score = 10+bonus;
           }
-        }else if (isSpare(pFrame2.outcome)) {
-          nextScores = getNextScores(scoresheet[i-1].outcome, scoresheet[i].outcome);
+        }else if (isSpare(prevFrame.outcome)) {
           if(nextScores.length >= 1){
             bonus += nextScores[0];
-            pFrame2.score = 10+bonus;
+            prevFrame.score = 10+bonus;
           }
         }
       }
     }
-
-
 
     if(isTenthFrame){
       scoresheet[i].score = scoreTenthFrame(scoresheet[i].outcome);
