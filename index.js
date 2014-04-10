@@ -51,33 +51,27 @@ function scoreFrame (frame) {
   return score;
 }
 
-// should accept array of leading frame outcomes
-// return array of throw scores
-// change name of fn
-function getNextScores(f1, f2) {
-  if(f1 === undefined) f1 = '';
-  if(f2 === undefined) f2 = '';
+function getThrowScores(frames) {
+  if(frames === undefined) frames = [];
 
-  var nextScores = [];
-  nextThrows = f1+f2+'';
-  for(var t=0; t<nextThrows.length; t++) {
-    var score, thw, prevThw;
+  var throwScores = [],
+      thrws = frames.join('').replace(zeroEquiv, '0');
 
-    thw = nextThrows[t].replace(zeroEquiv, '0');
+  for(var t=0; t<thrws.length; t++) {
+    var score;
 
-    if(thw === 'X'){
+    if(thrws[t] === 'X'){
       score = 10;
-    }else if (thw === '/'){
-      prevThw = nextThrows[t-1].replace(zeroEquiv, '0');
-      score = 10-parseInt(prevThw,10);
+    }else if (thrws[t] === '/'){
+      score = 10-parseInt(thrws[t-1],10);
     }else{
-      score = parseInt(thw,10);
+      score = parseInt(thrws[t],10);
     }
 
-    nextScores.push(score);
+    throwScores.push(score);
   }
 
-  return nextScores;
+  return throwScores;
 }
 
 function updateCumulatives(scoresheet) {
@@ -141,7 +135,8 @@ module.exports = function parseGame (game) {
       // should be own fn
       var prevFrame = scoresheet[i-1],
           prevIsPending = prevFrame.score === null,
-          nextScores = getNextScores(scoresheet[i].outcome),
+          leadingFrames = [scoresheet[i].outcome],
+          nextScores = getThrowScores(leadingFrames),
           bonus = 0;
 
       if(prevIsPending){
@@ -164,7 +159,8 @@ module.exports = function parseGame (game) {
     if(notFirstTwoFrames) {
       var prevFrame = scoresheet[i-2],
           prevIsPending = prevFrame.score === null,
-          nextScores = nextScores = getNextScores(scoresheet[i-1].outcome, scoresheet[i].outcome)
+          leadingFrames = [scoresheet[i-1].outcome, scoresheet[i].outcome],
+          nextScores = getThrowScores(leadingFrames),
           bonus = 0;
 
       // should be own fn
