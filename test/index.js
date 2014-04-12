@@ -163,3 +163,39 @@ test('10th frame double miss', function(t){
   t.deepEqual(result, expected);
   t.end();
 });
+
+test('10th frame in-progress: single strike', function(t){
+  var result = lib(['x','x','x','X','x','X','X','X','X','x']);
+  var expected = [
+    {outcome: 'X', cumulative: 30, score: 30},
+    {outcome: 'X', cumulative: 60, score: 30},
+    {outcome: 'X', cumulative: 90, score: 30},
+    {outcome: 'X', cumulative: 120, score: 30},
+    {outcome: 'X', cumulative: 150, score: 30},
+    {outcome: 'X', cumulative: 180, score: 30},
+    {outcome: 'X', cumulative: 210, score: 30},
+    {outcome: 'X', cumulative: 240, score: 30},
+    {outcome: 'X', cumulative: null, score: null},
+    {outcome: 'X', cumulative: null, score: null}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});
+
+test('10th frame in-progress: double strike', function(t){
+  var result = lib(['x','x','x','X','x','X','X','X','X','xX']);
+  var expected = [
+    {outcome: 'X', cumulative: 30, score: 30},
+    {outcome: 'X', cumulative: 60, score: 30},
+    {outcome: 'X', cumulative: 90, score: 30},
+    {outcome: 'X', cumulative: 120, score: 30},
+    {outcome: 'X', cumulative: 150, score: 30},
+    {outcome: 'X', cumulative: 180, score: 30},
+    {outcome: 'X', cumulative: 210, score: 30},
+    {outcome: 'X', cumulative: 240, score: 30},
+    {outcome: 'X', cumulative: 270, score: 30},
+    {outcome: 'XX', cumulative: null, score: null}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});

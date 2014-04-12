@@ -1,7 +1,5 @@
 // split frame functions to own file, w/ unit tests
-// replace for loops with something better looking
 // browserling test badge
-// support fouls, 'f', 'F' == '0', '-'
 
 var tenthPattern = new RegExp('^[XF0-9\-]{1}[XF0-9\-\/]?[XF0-9\-\/]?$','i');
 var basicPattern = new RegExp('^[XF0-9\-]{1}[F0-9\-\/]?$', 'i');
@@ -85,10 +83,17 @@ function updateCumulatives(scoresheet) {
   return scoresheet;
 }
 
-// this should not credit a strike/spare until sufficient subsequent shots completed
-// add test: X to begin 10th frame. should settle prior frames, but 10th is pending
 function scoreTenthFrame(frame) {
-  score = 0
+  var score = 0,
+      isFinal = false;
+
+  if(frame.length === 3){
+    isFinal = true;
+  }else if(frame.length === 2 && frame[1] !== 'X' && frame[1] !== '/' ){
+    isFinal = true;
+  }
+
+  if(!isFinal) return null;
 
   while(frame.length > 0) {
     if(isStrike(frame[0])){
