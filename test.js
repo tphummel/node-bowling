@@ -1,5 +1,5 @@
 var test = require('tape'),
-    lib = require('..');
+    lib = require('./');
 
 test('a complete game', function(t){
   var gm1 = ['81','9-','9/','71','9-','X','90','70','x','7-'];

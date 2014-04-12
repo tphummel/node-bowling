@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_ENV=test node test/ | tap-spec"
+    "test": "NODE_ENV=test node test | tap-spec"
   },
   "repository": {
     "type": "git",
