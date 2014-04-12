@@ -1,8 +1,8 @@
 (function(){
 
-  var tenthPattern = new RegExp('^[XF0-9\-]{1}[XF0-9\-\/]?[XF0-9\-\/]?$','i');
-  var basicPattern = new RegExp('^[XF0-9\-]{1}[F0-9\-\/]?$', 'i');
-  var zeroEquiv = new RegExp('[F\-]', 'g');
+  var tenthPattern = new RegExp('^[XF0-9\-]{1}[XF0-9\-\/]?[XF0-9\-\/]?$','i'),
+      basicPattern = new RegExp('^[XF0-9\-]{1}[F0-9\-\/]?$', 'i'),
+      zeroEquiv = new RegExp('[F\-]', 'g');
 
   function validateFrame (frame, isTenthFrame) {
     if(frame.length == 0){
