@@ -1,4 +1,12 @@
 
+1.2.0 / 2014-04-12
+==================
+
+ * iife
+ * fix: tenth frame finalizing too early
+ * vocab: replace 'throw' with 'roll'
+ * added support for fouls, dedupe chars that eval to zero points
+
 1.1.0 / 2014-04-07
 ==================
 
