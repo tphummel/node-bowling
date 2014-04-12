@@ -106,18 +106,35 @@ function scoreTenthFrame(frame) {
 
 }
 
+function attemptFrameFinalize(frame, leadingFrames) {
+  var prevIsPending = frame.score === null,
+      nextScores = getThrowScores(leadingFrames),
+      bonus = 0;
+
+  if(prevIsPending){
+    if(isStrike(frame.outcome)){
+      if(nextScores.length >= 2){
+        bonus += nextScores[0];
+        bonus += nextScores[1];
+        frame.score = 10 + bonus;
+      }
+    }else if(isSpare(frame.outcome)){
+      if(nextScores.length >= 1){
+        bonus += nextScores[0];
+        frame.score = 10 + bonus;
+      }
+    }
+  }
+}
+
 module.exports = function parseGame (game) {
   var scoresheet = [],
       totalScore = 0;
 
-  // validate game fn
   if(game.length > 10) throw new Error('too many frames');
 
   for(var i=0; i<game.length; i++ ) {
-
-    // all of this in a processFrame fn
-    var pFrame2,
-        isTenthFrame = i===9,
+    var isTenthFrame = i===9,
         notFirstFrame = i>0,
         notFirstTwoFrames = i>1,
         cleanOutcome = parseFrame(game[i], isTenthFrame);
@@ -131,55 +148,17 @@ module.exports = function parseGame (game) {
     };
 
     if(notFirstFrame){
-
-      // should be own fn
       var prevFrame = scoresheet[i-1],
-          prevIsPending = prevFrame.score === null,
-          leadingFrames = [scoresheet[i].outcome],
-          nextScores = getThrowScores(leadingFrames),
-          bonus = 0;
+          leadingFrames = [scoresheet[i].outcome];
 
-      if(prevIsPending){
-        if(isStrike(prevFrame.outcome)){
-          if(nextScores.length >= 2){
-            bonus += nextScores[0];
-            bonus += nextScores[1];
-            prevFrame.score = 10 + bonus;
-          }
-        }else if(isSpare(prevFrame.outcome)){
-          if(nextScores.length >= 1){
-            bonus += nextScores[0];
-            prevFrame.score = 10 + bonus;
-          }
-        }
-      }
+      attemptFrameFinalize(prevFrame, leadingFrames);
     }
 
-    // attempt to close frame before last
     if(notFirstTwoFrames) {
       var prevFrame = scoresheet[i-2],
-          prevIsPending = prevFrame.score === null,
-          leadingFrames = [scoresheet[i-1].outcome, scoresheet[i].outcome],
-          nextScores = getThrowScores(leadingFrames),
-          bonus = 0;
+          leadingFrames = [scoresheet[i-1].outcome, scoresheet[i].outcome];
 
-      // should be own fn
-      if(prevIsPending){
-
-        if(isStrike(prevFrame.outcome)) {
-
-          if(nextScores.length >= 2){
-            bonus += nextScores[0];
-            bonus += nextScores[1];
-            prevFrame.score = 10+bonus;
-          }
-        }else if (isSpare(prevFrame.outcome)) {
-          if(nextScores.length >= 1){
-            bonus += nextScores[0];
-            prevFrame.score = 10+bonus;
-          }
-        }
-      }
+      attemptFrameFinalize(prevFrame, leadingFrames);
     }
 
     if(isTenthFrame){
