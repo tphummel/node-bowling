@@ -7,6 +7,8 @@ apply scoring logic to bowling results
 
 [![NPM](https://nodei.co/npm/bowling.png?downloads=true)](https://nodei.co/npm/bowling/)
 
+[![testling badge](https://ci.testling.com/tphummel/node-bowling.png)](https://ci.testling.com/tphummel/node-bowling)
+
 # install
 
     npm install bowling
