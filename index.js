@@ -51,27 +51,27 @@ function scoreFrame (frame) {
   return score;
 }
 
-function getThrowScores(frames) {
+function getRollScores(frames) {
   if(frames === undefined) frames = [];
 
-  var throwScores = [],
-      thrws = frames.join('').replace(zeroEquiv, '0');
+  var rollScores = [],
+      rolls = frames.join('').replace(zeroEquiv, '0');
 
-  for(var t=0; t<thrws.length; t++) {
+  for(var t=0; t<rolls.length; t++) {
     var score;
 
-    if(thrws[t] === 'X'){
+    if(rolls[t] === 'X'){
       score = 10;
-    }else if (thrws[t] === '/'){
-      score = 10-parseInt(thrws[t-1],10);
+    }else if (rolls[t] === '/'){
+      score = 10-parseInt(rolls[t-1],10);
     }else{
-      score = parseInt(thrws[t],10);
+      score = parseInt(rolls[t],10);
     }
 
-    throwScores.push(score);
+    rollScores.push(score);
   }
 
-  return throwScores;
+  return rollScores;
 }
 
 function updateCumulatives(scoresheet) {
@@ -108,7 +108,7 @@ function scoreTenthFrame(frame) {
 
 function attemptFrameFinalize(frame, leadingFrames) {
   var prevIsPending = frame.score === null,
-      nextScores = getThrowScores(leadingFrames),
+      nextScores = getRollScores(leadingFrames),
       bonus = 0;
 
   if(prevIsPending){
