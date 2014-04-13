@@ -136,6 +136,25 @@ test('did someone say "a perfect game"?', function(t){
   t.end();
 });
 
+test('a complete game with all zero-spares', function(t){
+  var gm1 = ['0/','-/','0/','-/','-/','-/','-/','-/','-/','-/-'];
+  var result = lib(gm1);
+  var expected = [
+    {outcome: '-/', cumulative: 10, score: 10},
+    {outcome: '-/', cumulative: 20, score: 10},
+    {outcome: '-/', cumulative: 30, score: 10},
+    {outcome: '-/', cumulative: 40, score: 10},
+    {outcome: '-/', cumulative: 50, score: 10},
+    {outcome: '-/', cumulative: 60, score: 10},
+    {outcome: '-/', cumulative: 70, score: 10},
+    {outcome: '-/', cumulative: 80, score: 10},
+    {outcome: '-/', cumulative: 90, score: 10},
+    {outcome: '-/-', cumulative: 100, score: 10}
+  ];
+  t.deepEqual(result, expected);
+  t.end();
+});
+
 test('zero frame', function(t){
   var gm1 = ['--'];
   var result = lib(gm1);
