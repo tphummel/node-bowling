@@ -1,7 +1,7 @@
 {
   "name": "bowling",
   "version": "1.2.0",
-  "description": "bowling scorekeeping module",
+  "description": "ten-pin bowling scorekeeping module",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -15,12 +15,12 @@
   },
   "keywords": [
     "scoresheet",
+    "tenpin",
+    "ten-pin",
     "bowling",
     "score",
     "scoring",
-    "sport",
-    "strike",
-    "spare"
+    "sport"
   ],
   "author": {
     "name": "Tom Hummel",
