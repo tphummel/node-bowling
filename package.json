@@ -37,7 +37,7 @@
     "tap-spec": "^0.1.8"
   },
   "testling": {
-    "files": "test/*.js",
+    "files": "test.js",
     "browsers": [
       "ie/8..latest",
       "firefox/17..latest",
