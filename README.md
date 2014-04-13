@@ -1,7 +1,7 @@
 
 # node-bowling
 
-apply scoring logic to bowling results
+apply scoring logic to ten-pin bowling results. handles both incomplete and complete games.
 
 [![Build Status](https://travis-ci.org/tphummel/node-bowling.png)](https://travis-ci.org/tphumeml/node-bowling)
 
@@ -19,13 +19,17 @@ apply scoring logic to bowling results
 
 # usage
 
-    var bowl = require("bowling"),
-        game = ['81','9-','9/','71','9-','X','90','70','x','7-'],
+    var bowl = require('bowling');
+
+
+    var aCompleteGame = ['81','9-','9/','71','9-','X','90','70','x','7-'],
         result;
 
-    result = bowl(game);
+    result = bowl(aCompleteGame);
+
     console.log(result);
 
+    /*
     [
       {outcome: '81', cumulative: 9, score: 9},
       {outcome: '9-', cumulative: 18, score: 9},
@@ -38,6 +42,7 @@ apply scoring logic to bowling results
       {outcome: 'X', cumulative: 104, score: 17},
       {outcome: '7-', cumulative: 111, score: 7}
     ]
+    */
 
 # notes
 
