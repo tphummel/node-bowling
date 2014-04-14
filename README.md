@@ -3,7 +3,7 @@
 
 apply scoring logic to ten-pin bowling results. handles both incomplete and complete games.
 
-[![Build Status](https://travis-ci.org/tphummel/node-bowling.png)](https://travis-ci.org/tphumeml/node-bowling)
+[![Build Status](https://travis-ci.org/tphummel/node-bowling.png)](https://travis-ci.org/tphummel/node-bowling)
 
 [![NPM](https://nodei.co/npm/bowling.png?downloads=true)](https://nodei.co/npm/bowling/)
 
@@ -43,6 +43,12 @@ apply scoring logic to ten-pin bowling results. handles both incomplete and comp
       {outcome: '7-', cumulative: 111, score: 7}
     ]
     */
+
+# example
+
+`example.js`: a script that shows how a game could be scored progressively
+
+![Example](http://i.imgur.com/A9NlY6W.gif)
 
 # notes
 
