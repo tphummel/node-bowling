@@ -34,7 +34,9 @@
   "homepage": "https://github.com/tphummel/node-bowling",
   "devDependencies": {
     "tape": "~2.3.2",
-    "tap-spec": "^0.1.8"
+    "tap-spec": "^0.1.8",
+    "text-table": "^0.2.0",
+    "async": "^0.7.0"
   },
   "testling": {
     "files": "test.js",
