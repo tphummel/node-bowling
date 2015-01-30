@@ -19,15 +19,15 @@ apply scoring logic to ten-pin bowling results. handles both incomplete and comp
 
 # usage
 
-    var bowl = require('bowling');
+    var bowl = require('bowling')
 
 
     var aCompleteGame = ['81','9-','9/','71','9-','X','90','70','x','7-'],
-        result;
+        result
 
-    result = bowl(aCompleteGame);
+    result = bowl(aCompleteGame)
 
-    console.log(result);
+    console.log(result)
 
     /*
     [

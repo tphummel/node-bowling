@@ -1,9 +1,9 @@
-var test = require('tape'),
-    lib = require('./');
+var test = require('tape')
+var lib = require('./')
 
 test('a complete game', function(t){
-  var gm1 = ['81','9-','9/','71','9-','X','90','70','x','7-'];
-  var result = lib(gm1);
+  var gm1 = ['81','9-','9/','71','9-','X','90','70','x','7-']
+  var result = lib(gm1)
   var expected = [
     {outcome: '81', cumulative: 9, score: 9},
     {outcome: '9-', cumulative: 18, score: 9},
@@ -15,14 +15,14 @@ test('a complete game', function(t){
     {outcome: '7-', cumulative: 87, score: 7},
     {outcome: 'X', cumulative: 104, score: 17},
     {outcome: '7-', cumulative: 111, score: 7}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('a complete game with fouls', function(t){
-  var gm1 = ['81','9-','9/','71','9f','X','9F','70','x','7-'];
-  var result = lib(gm1);
+  var gm1 = ['81','9-','9/','71','9f','X','9F','70','x','7-']
+  var result = lib(gm1)
   var expected = [
     {outcome: '81', cumulative: 9, score: 9},
     {outcome: '9-', cumulative: 18, score: 9},
@@ -34,43 +34,43 @@ test('a complete game with fouls', function(t){
     {outcome: '7-', cumulative: 87, score: 7},
     {outcome: 'X', cumulative: 104, score: 17},
     {outcome: '7-', cumulative: 111, score: 7}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('too many frames should throw', function(t){
   t.throws(function(){
-    lib(['81','9-','9/','71','9-','X','90','70','x','7-','x']);
+    lib(['81','9-','9/','71','9-','X','90','70','x','7-','x'])
 
-  }, Error);
+  }, Error)
 
-  t.end();
-});
+  t.end()
+})
 
 test('invalid frame should throw', function(t){
   t.throws(function(){
-    lib(['78']);
-  }, Error);
+    lib(['78'])
+  }, Error)
 
   t.throws(function(){
-    lib(['787']);
-  }, Error);
+    lib(['787'])
+  }, Error)
 
   t.throws(function(){
-    lib(['']);
-  }, Error);
+    lib([''])
+  }, Error)
 
   t.throws(function(){
-    lib(['/9']);
-  }, Error);
+    lib(['/9'])
+  }, Error)
 
-  t.end();
-});
+  t.end()
+})
 
 
 test('second complete game', function(t){
-  var result = lib(['80','x','1/','7/','90','6-','x','43','62','8/6']);
+  var result = lib(['80','x','1/','7/','90','6-','x','43','62','8/6'])
   var expected = [
     {outcome: '8-', cumulative: 8, score: 8},
     {outcome: 'X', cumulative: 28, score: 20},
@@ -82,13 +82,13 @@ test('second complete game', function(t){
     {outcome: '43', cumulative: 103, score: 7},
     {outcome: '62', cumulative: 111, score: 8},
     {outcome: '8/6', cumulative: 127, score: 16}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('strikeout to finish', function(t){
-  var result = lib(['80','x','1/','7/','90','6-','x','43','X','xxX']);
+  var result = lib(['80','x','1/','7/','90','6-','x','43','X','xxX'])
   var expected = [
     {outcome: '8-', cumulative: 8, score: 8},
     {outcome: 'X', cumulative: 28, score: 20},
@@ -100,26 +100,26 @@ test('strikeout to finish', function(t){
     {outcome: '43', cumulative: 103, score: 7},
     {outcome: 'X', cumulative: 133, score: 30},
     {outcome: 'XXX', cumulative: 163, score: 30}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('an incomplete game', function(t){
-  var result = lib(['80','x','1/','7/','9']);
+  var result = lib(['80','x','1/','7/','9'])
   var expected = [
     {outcome: '8-', cumulative: 8, score: 8},
     {outcome: 'X', cumulative: 28, score: 20},
     {outcome: '1/', cumulative: 45, score: 17},
     {outcome: '7/', cumulative: 64, score: 19},
     {outcome: '9', cumulative: 73, score: 9}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('did someone say "a perfect game"?', function(t){
-  var result = lib(['x','x','x','X','x','X','X','X','X','xxX']);
+  var result = lib(['x','x','x','X','x','X','X','X','X','xxX'])
   var expected = [
     {outcome: 'X', cumulative: 30, score: 30},
     {outcome: 'X', cumulative: 60, score: 30},
@@ -131,14 +131,14 @@ test('did someone say "a perfect game"?', function(t){
     {outcome: 'X', cumulative: 240, score: 30},
     {outcome: 'X', cumulative: 270, score: 30},
     {outcome: 'XXX', cumulative: 300, score: 30}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('a complete game with all zero-spares', function(t){
-  var gm1 = ['0/','-/','0/','-/','-/','-/','-/','-/','-/','-/-'];
-  var result = lib(gm1);
+  var gm1 = ['0/','-/','0/','-/','-/','-/','-/','-/','-/','-/-']
+  var result = lib(gm1)
   var expected = [
     {outcome: '-/', cumulative: 10, score: 10},
     {outcome: '-/', cumulative: 20, score: 10},
@@ -150,23 +150,23 @@ test('a complete game with all zero-spares', function(t){
     {outcome: '-/', cumulative: 80, score: 10},
     {outcome: '-/', cumulative: 90, score: 10},
     {outcome: '-/-', cumulative: 100, score: 10}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('zero frame', function(t){
-  var gm1 = ['--'];
-  var result = lib(gm1);
+  var gm1 = ['--']
+  var result = lib(gm1)
   var expected = [
     {outcome: '--', cumulative: 0, score: 0}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('10th frame double miss', function(t){
-  var result = lib(['x','x','x','X','x','X','X','X','X','00']);
+  var result = lib(['x','x','x','X','x','X','X','X','X','00'])
   var expected = [
     {outcome: 'X', cumulative: 30, score: 30},
     {outcome: 'X', cumulative: 60, score: 30},
@@ -178,13 +178,13 @@ test('10th frame double miss', function(t){
     {outcome: 'X', cumulative: 230, score: 20},
     {outcome: 'X', cumulative: 240, score: 10},
     {outcome: '--', cumulative: 240, score: 0}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('10th frame in-progress: single strike', function(t){
-  var result = lib(['x','x','x','X','x','X','X','X','X','x']);
+  var result = lib(['x','x','x','X','x','X','X','X','X','x'])
   var expected = [
     {outcome: 'X', cumulative: 30, score: 30},
     {outcome: 'X', cumulative: 60, score: 30},
@@ -196,13 +196,13 @@ test('10th frame in-progress: single strike', function(t){
     {outcome: 'X', cumulative: 240, score: 30},
     {outcome: 'X', cumulative: null, score: null},
     {outcome: 'X', cumulative: null, score: null}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
 
 test('10th frame in-progress: double strike', function(t){
-  var result = lib(['x','x','x','X','x','X','X','X','X','xX']);
+  var result = lib(['x','x','x','X','x','X','X','X','X','xX'])
   var expected = [
     {outcome: 'X', cumulative: 30, score: 30},
     {outcome: 'X', cumulative: 60, score: 30},
@@ -214,7 +214,7 @@ test('10th frame in-progress: double strike', function(t){
     {outcome: 'X', cumulative: 240, score: 30},
     {outcome: 'X', cumulative: 270, score: 30},
     {outcome: 'XX', cumulative: null, score: null}
-  ];
-  t.deepEqual(result, expected);
-  t.end();
-});
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
