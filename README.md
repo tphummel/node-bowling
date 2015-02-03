@@ -50,6 +50,8 @@ apply scoring logic to ten-pin bowling results. handles both incomplete and comp
 
 ![Example](http://i.imgur.com/A9NlY6W.gif)
 
+also: a [live-updating terminal scoreboard](https://gist.github.com/tphummel/f757412870387c9897b9)
+
 # notes
 
 - miss: `0` or `-`
