@@ -1,6 +1,6 @@
 {
   "name": "bowling",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "ten-pin bowling scorekeeping module",
   "main": "index.js",
   "directories": {
