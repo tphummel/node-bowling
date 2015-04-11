@@ -3,7 +3,7 @@
 
 apply scoring logic to ten-pin bowling results. handles both incomplete and complete games.
 
-[![Build Status](https://travis-ci.org/tphummel/node-bowling.png)](https://travis-ci.org/tphummel/node-bowling)
+[![Build Status](https://travis-ci.org/tphummel/node-bowling.png)](https://travis-ci.org/tphummel/node-bowling) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 [![NPM](https://nodei.co/npm/bowling.png?downloads=true)](https://nodei.co/npm/bowling/)
 

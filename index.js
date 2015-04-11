@@ -1,70 +1,70 @@
-;(function(){
+;(function () {
   module.exports = parseGame
-
-  var tenthPattern = new RegExp('^[XF0-9\-]{1}[XF0-9\-\/]?[XF0-9\-\/]?$','i')
+  var tenthPattern = new RegExp('^[XF0-9\-]{1}[XF0-9\-\/]?[XF0-9\-\/]?$', 'i')
   var basicPattern = new RegExp('^[XF0-9\-]{1}[F0-9\-\/]?$', 'i')
   var zeroEquiv = new RegExp('[F\-]', 'g')
 
   function validateFrame (frame, isTenthFrame) {
-    if(frame.length === 0){
-      throw new Error('frame must not be empty: '+frame)
-    }else if(frame.length > 3) {
-      throw new Error('frame must be less than 4 chars: '+frame)
-    }else if(frame.length === 3 && !isTenthFrame) {
-      throw new Error('frame length too long for frames 1-9: '+frame)
-    }else if(isTenthFrame && !tenthPattern.test(frame)){
-      throw new Error('failed tenth frame validation'+frame)
-    }else if(!isTenthFrame && !basicPattern.test(frame)){
-      throw new Error('failed normal frame validation'+frame)
+    if (frame.length === 0) {
+      throw new Error('frame must not be empty: ' + frame)
+    }else if (frame.length > 3) {
+      throw new Error('frame must be less than 4 chars: ' + frame)
+    }else if (frame.length === 3 && !isTenthFrame) {
+      throw new Error('frame length too long for frames 1-9: ' + frame)
+    }else if (isTenthFrame && !tenthPattern.test(frame)) {
+      throw new Error('failed tenth frame validation' + frame)
+    }else if (!isTenthFrame && !basicPattern.test(frame)) {
+      throw new Error('failed normal frame validation' + frame)
     }
   }
 
   function parseFrame (result) {
-    if(typeof result !== 'string') result = result + ''
+    if (typeof result !== 'string') result = result + ''
 
-    result = result.replace(/0/g,'-')
+    result = result.replace(/0/g, '-')
     result = result.toUpperCase()
     return result
   }
 
-  function isStrike(frame) { return frame === 'X' }
+  function isStrike (frame) { return frame === 'X' }
 
-  function isSpare(frame) {
+  function isSpare (frame) {
     return frame.length === 2 && frame.match(/\//)
   }
 
   function scoreFrame (frame) {
     var score
 
-    if(isStrike(frame) || isSpare(frame)){
+    if (isStrike(frame) || isSpare(frame)) {
       score = null
-    }else{
-      var addable = frame.replace(zeroEquiv,'0')
+    }else {
+      var addable = frame.replace(zeroEquiv, '0')
       score = 0
-      for(var c=0; c<addable.length; c++){
+      for (var c = 0; c < addable.length; c++) {
         score += parseInt(addable[c], 10)
-        if(score > 9)
-          throw new Error('invalid frame score: '+frame+ ' = '+score)
+        if (score > 9) {
+          throw new Error('invalid frame score: ' + frame + ' = ' + score)
+        }
       }
     }
     return score
   }
 
-  function getRollScores(frames) {
-    if(frames === undefined) frames = []
+  function getRollScores (frames) {
+    if (frames === undefined) frames = []
 
     var rollScores = []
     var rolls = frames.join('').replace(zeroEquiv, '0')
 
-    for(var t=0; t<rolls.length; t++) {
+    for (var t = 0; t < rolls.length; t++) {
       var score
 
-      if(rolls[t] === 'X'){
+      if (rolls[t] === 'X') {
         score = 10
-      }else if (rolls[t] === '/'){
-        score = 10-parseInt(rolls[t-1],10)
-      }else{
-        score = parseInt(rolls[t],10)
+      }else if (rolls[t] === '/') {
+        score = 10 - parseInt(rolls[t - 1], 10)
+      }else {
+        score = parseInt(rolls[t], 10)
       }
 
       rollScores.push(score)
@@ -73,10 +73,10 @@
     return rollScores
   }
 
-  function updateCumulatives(scoresheet) {
+  function updateCumulatives (scoresheet) {
     var cumulative = 0
-    for(var f=0; f<scoresheet.length; f++){
-      if(scoresheet[f].score === null) break
+    for (var f = 0; f < scoresheet.length; f++) {
+      if (scoresheet[f].score === null) break
 
       cumulative += scoresheet[f].score
       scoresheet[f].cumulative = cumulative
@@ -84,26 +84,26 @@
     return scoresheet
   }
 
-  function scoreTenthFrame(frame) {
+  function scoreTenthFrame (frame) {
     var score = 0
     var isFinal = false
 
-    if(frame.length === 3){
+    if (frame.length === 3) {
       isFinal = true
-    }else if(frame.length === 2 && frame[1] !== 'X' && frame[1] !== '/' ){
+    }else if (frame.length === 2 && frame[1] !== 'X' && frame[1] !== '/') {
       isFinal = true
     }
 
-    if(!isFinal) return null
+    if (!isFinal) return null
 
-    while(frame.length > 0) {
-      if(isStrike(frame[0])){
+    while (frame.length > 0) {
+      if (isStrike(frame[0])) {
         score += 10
         frame = frame.slice(1)
-      }else if(isSpare(frame.substr(0,2))){
+      }else if (isSpare(frame.substr(0, 2))) {
         score += 10
         frame = frame.slice(2)
-      }else{
+      }else {
         score += scoreFrame(frame[0])
         frame = frame.slice(1)
       }
@@ -112,20 +112,20 @@
 
   }
 
-  function attemptFrameFinalize(frame, leadingFrames) {
+  function attemptFrameFinalize (frame, leadingFrames) {
     var prevIsPending = frame.score === null
     var nextScores = getRollScores(leadingFrames)
     var bonus = 0
 
-    if(prevIsPending){
-      if(isStrike(frame.outcome)){
-        if(nextScores.length >= 2){
+    if (prevIsPending) {
+      if (isStrike(frame.outcome)) {
+        if (nextScores.length >= 2) {
           bonus += nextScores[0]
           bonus += nextScores[1]
           frame.score = 10 + bonus
         }
-      }else if(isSpare(frame.outcome)){
-        if(nextScores.length >= 1){
+      }else if (isSpare(frame.outcome)) {
+        if (nextScores.length >= 1) {
           bonus += nextScores[0]
           frame.score = 10 + bonus
         }
@@ -135,14 +135,13 @@
 
   function parseGame (game) {
     var scoresheet = []
-    var totalScore = 0
 
-    if(game.length > 10) throw new Error('too many frames')
+    if (game.length > 10) throw new Error('too many frames')
 
-    for(var i=0; i<game.length; i++ ) {
-      var isTenthFrame = i===9
-      var notFirstFrame = i>0
-      var notFirstTwoFrames = i>1
+    for (var i = 0; i < game.length; i++) {
+      var isTenthFrame = i === 9
+      var notFirstFrame = i > 0
+      var notFirstTwoFrames = i > 1
       var cleanOutcome = parseFrame(game[i], isTenthFrame)
 
       validateFrame(cleanOutcome, isTenthFrame)
@@ -155,21 +154,21 @@
 
       var prevFrame, leadingFrames
 
-      if(notFirstFrame){
-        prevFrame = scoresheet[i-1]
+      if (notFirstFrame) {
+        prevFrame = scoresheet[i - 1]
         leadingFrames = [scoresheet[i].outcome]
 
         attemptFrameFinalize(prevFrame, leadingFrames)
       }
 
-      if(notFirstTwoFrames) {
-        prevFrame = scoresheet[i-2]
-        leadingFrames = [scoresheet[i-1].outcome, scoresheet[i].outcome]
+      if (notFirstTwoFrames) {
+        prevFrame = scoresheet[i - 2]
+        leadingFrames = [scoresheet[i - 1].outcome, scoresheet[i].outcome]
 
         attemptFrameFinalize(prevFrame, leadingFrames)
       }
 
-      if(isTenthFrame){
+      if (isTenthFrame) {
         scoresheet[i].score = scoreTenthFrame(scoresheet[i].outcome)
       }
     }
@@ -178,5 +177,4 @@
 
     return scoresheet
   }
-
 })(this)
