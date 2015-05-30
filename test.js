@@ -1,4 +1,4 @@
-var test = require('tape')
+var test = require('tap').test
 var lib = require('./')
 
 test('a complete game', function (t) {
@@ -43,7 +43,7 @@ test('too many frames should throw', function (t) {
   t.throws(function () {
     lib(['81', '9-', '9/', '71', '9-', 'X', '90', '70', 'x', '7-', 'x'])
 
-  }, Error)
+  })
 
   t.end()
 })
@@ -51,19 +51,19 @@ test('too many frames should throw', function (t) {
 test('invalid frame should throw', function (t) {
   t.throws(function () {
     lib(['78'])
-  }, Error)
+  })
 
   t.throws(function () {
     lib(['787'])
-  }, Error)
+  })
 
   t.throws(function () {
     lib([''])
-  }, Error)
+  })
 
   t.throws(function () {
     lib(['/9'])
-  }, Error)
+  })
 
   t.end()
 })

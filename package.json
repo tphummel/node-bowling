@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "standard && NODE_ENV=test node test | tap-spec"
+    "test": "standard && NODE_ENV=test tap -R jsoncov test.js"
   },
   "repository": {
     "type": "git",
@@ -35,9 +35,8 @@
   "devDependencies": {
     "async": "^0.7.0",
     "standard": "^3.5.0",
-    "tap-spec": "^0.1.8",
-    "tape": "~2.3.2",
-    "text-table": "^0.2.0"
+    "text-table": "^0.2.0",
+    "tap": "^1.2.0"
   },
   "testling": {
     "files": "test.js",
@@ -54,5 +53,6 @@
       "iphone/6.0..latest",
       "android-browser/4.2..latest"
     ]
-  }
+  },
+  "dependencies": {}
 }
