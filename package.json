@@ -35,9 +35,8 @@
   "devDependencies": {
     "async": "^0.7.0",
     "standard": "^3.5.0",
-    "tap-spec": "^0.1.8",
-    "tape": "~2.3.2",
-    "text-table": "^0.2.0"
+    "text-table": "^0.2.0",
+    "tap": "^1.2.0"
   },
   "testling": {
     "files": "test.js",
@@ -55,7 +54,5 @@
       "android-browser/4.2..latest"
     ]
   },
-  "dependencies": {
-    "tap": "^1.2.0"
-  }
+  "dependencies": {}
 }
