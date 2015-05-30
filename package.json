@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "standard && NODE_ENV=test node test | tap-spec"
+    "test": "standard && NODE_ENV=test node test | tap"
   },
   "repository": {
     "type": "git",
@@ -54,5 +54,8 @@
       "iphone/6.0..latest",
       "android-browser/4.2..latest"
     ]
+  },
+  "dependencies": {
+    "tap": "^1.2.0"
   }
 }
