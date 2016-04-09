@@ -64,6 +64,10 @@ test('invalid frame should throw', function (t) {
     lib(['/9'])
   })
 
+  t.throws(function longFrame () {
+    lib(['78xx'])
+  })
+
   t.end()
 })
 
@@ -214,5 +218,12 @@ test('10th frame in-progress: double strike', function (t) {
     {outcome: 'XX', cumulative: null, score: null}
   ]
   t.deepEqual(result, expected)
+  t.end()
+})
+
+test('10th frame pattern miss should throw', function (t) {
+  t.throws(function () {
+    lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', 'y'])
+  })
   t.end()
 })
