@@ -7,13 +7,13 @@
   function validateFrame (frame, isTenthFrame) {
     if (frame.length === 0) {
       throw new Error('frame must not be empty: ' + frame)
-    }else if (frame.length > 3) {
+    } else if (frame.length > 3) {
       throw new Error('frame must be less than 4 chars: ' + frame)
-    }else if (frame.length === 3 && !isTenthFrame) {
+    } else if (frame.length === 3 && !isTenthFrame) {
       throw new Error('frame length too long for frames 1-9: ' + frame)
-    }else if (isTenthFrame && !tenthPattern.test(frame)) {
+    } else if (isTenthFrame && !tenthPattern.test(frame)) {
       throw new Error('failed tenth frame validation' + frame)
-    }else if (!isTenthFrame && !basicPattern.test(frame)) {
+    } else if (!isTenthFrame && !basicPattern.test(frame)) {
       throw new Error('failed normal frame validation' + frame)
     }
   }
@@ -37,7 +37,7 @@
 
     if (isStrike(frame) || isSpare(frame)) {
       score = null
-    }else {
+    } else {
       var addable = frame.replace(zeroEquiv, '0')
       score = 0
       for (var c = 0; c < addable.length; c++) {
@@ -61,9 +61,9 @@
 
       if (rolls[t] === 'X') {
         score = 10
-      }else if (rolls[t] === '/') {
+      } else if (rolls[t] === '/') {
         score = 10 - parseInt(rolls[t - 1], 10)
-      }else {
+      } else {
         score = parseInt(rolls[t], 10)
       }
 
@@ -90,7 +90,7 @@
 
     if (frame.length === 3) {
       isFinal = true
-    }else if (frame.length === 2 && frame[1] !== 'X' && frame[1] !== '/') {
+    } else if (frame.length === 2 && frame[1] !== 'X' && frame[1] !== '/') {
       isFinal = true
     }
 
@@ -100,16 +100,15 @@
       if (isStrike(frame[0])) {
         score += 10
         frame = frame.slice(1)
-      }else if (isSpare(frame.substr(0, 2))) {
+      } else if (isSpare(frame.substr(0, 2))) {
         score += 10
         frame = frame.slice(2)
-      }else {
+      } else {
         score += scoreFrame(frame[0])
         frame = frame.slice(1)
       }
     }
     return score
-
   }
 
   function attemptFrameFinalize (frame, leadingFrames) {
@@ -124,7 +123,7 @@
           bonus += nextScores[1]
           frame.score = 10 + bonus
         }
-      }else if (isSpare(frame.outcome)) {
+      } else if (isSpare(frame.outcome)) {
         if (nextScores.length >= 1) {
           bonus += nextScores[0]
           frame.score = 10 + bonus

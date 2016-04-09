@@ -42,7 +42,6 @@ test('a complete game with fouls', function (t) {
 test('too many frames should throw', function (t) {
   t.throws(function () {
     lib(['81', '9-', '9/', '71', '9-', 'X', '90', '70', 'x', '7-', 'x'])
-
   })
 
   t.end()
