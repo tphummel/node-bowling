@@ -9,3 +9,10 @@ node_js:
 - '0.12'
 - '0.11'
 - '0.10'
+deploy:
+  provider: npm
+  email: tphummel@gmail.com
+  on:
+    tags: true
+  api_key:
+    secure: lta7daXp7pt9Z6syCHXpJXyRCDTFZYpvXeMWbn4FncWreuRZKoiQj89xMB6JlKAtyqrgsOG2aXgX9j4IhBS6sAt11HWq742qbvmP+Ziq0Dj05oHVVlS7QEQt6UDeGHTzx+5V9jTq4yG6NWOrXYCaG/zWbWLO/02llRB15M1JTeA=
