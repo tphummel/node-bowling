@@ -1,4 +1,13 @@
 
+1.3.2 / 2016-04-09
+==================
+
+  * travis: automated npm publish on git tag
+  * added two tests to reach 100% coverage
+  * travis: target node versions 4.x, 5.x generally
+  * standard linter fixes
+  * update all deps with greenkeeper
+
 1.3.1 / 2015-10-05
 ==================
 
