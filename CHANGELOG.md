@@ -1,4 +1,10 @@
 
+1.3.3 / 2016-06-12
+==================
+
+  * upgraded feross/standard to v7.1.2
+  * removed unnecessary escape chars from regular expressions
+
 1.3.2 / 2016-04-09
 ==================
 
