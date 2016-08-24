@@ -1,4 +1,21 @@
 
+1.3.5 / 2016-08-24
+==================
+
+  * Merge pull request #22 from tphummel/node-6.x
+  * remove 0.11, iojs, 5.x node versions from travis.yml
+  * Merge pull request #18 from tphummel/greenkeeper-async-2.0.0
+  * add node 6.x to travis.yml
+  * chore(package): update async to version 2.0.0
+  * Merge pull request #21 from tphummel/greenkeeper-standard-8.0.0
+  * chore(package): update standard to version 8.0.0
+
+
+1.3.4 / 2016-08-10
+==================
+
+  * upgrade tap from 5.7.1 -> 6.3.0
+
 1.3.3 / 2016-06-12
 ==================
 
