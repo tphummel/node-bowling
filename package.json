@@ -38,7 +38,7 @@
     "async": "^2.0.0",
     "standard": "^8.0.0",
     "text-table": "^0.2.0",
-    "tap": "^6.3.0"
+    "tap": "^7.1.2"
   },
   "testling": {
     "files": "test.js",
