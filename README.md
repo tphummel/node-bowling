@@ -7,8 +7,6 @@ apply scoring logic to ten-pin bowling results. handles both incomplete and comp
 
 [![NPM](https://nodei.co/npm/bowling.png?downloads=true)](https://nodei.co/npm/bowling/)
 
-[![testling badge](https://ci.testling.com/tphummel/node-bowling.png)](https://ci.testling.com/tphummel/node-bowling)
-
 # install
 
     npm install bowling
