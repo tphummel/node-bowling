@@ -1,5 +1,5 @@
 
-# node-bowling
+# node-bowling!
 
 apply scoring logic to ten-pin bowling results. handles both incomplete and complete games.
 
