@@ -1,6 +1,8 @@
 
 # node-bowling!
 
+
+
 apply scoring logic to ten-pin bowling results. handles both incomplete and complete games.
 
 [![Build Status](https://travis-ci.org/tphummel/node-bowling.png)](https://travis-ci.org/tphummel/node-bowling) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) [![Coverage Status](https://coveralls.io/repos/tphummel/node-bowling/badge.svg)](https://coveralls.io/r/tphummel/node-bowling)
