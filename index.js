@@ -51,8 +51,6 @@
   }
 
   function getRollScores (frames) {
-    if (frames === undefined) frames = []
-
     var rollScores = []
     var rolls = frames.join('').replace(zeroEquiv, '0')
 
@@ -123,11 +121,10 @@
           bonus += nextScores[1]
           frame.score = 10 + bonus
         }
-      } else if (isSpare(frame.outcome)) {
-        if (nextScores.length >= 1) {
-          bonus += nextScores[0]
-          frame.score = 10 + bonus
-        }
+      }
+      if (isSpare(frame.outcome)) {
+        bonus += nextScores[0]
+        frame.score = 10 + bonus
       }
     }
   }

@@ -167,6 +167,53 @@ tap.test('zero frame', function (t) {
   t.end()
 })
 
+tap.test('non-string frame', function (t) {
+  var gm1 = [13]
+  var result = lib(gm1)
+  var expected = [
+    {outcome: '13', cumulative: 4, score: 4}
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
+
+tap.test('closed spare', function (t) {
+  var gm1 = ['--', '--', '3/', '9']
+  var result = lib(gm1)
+  var expected = [
+    {outcome: '--', cumulative: 0, score: 0},
+    {outcome: '--', cumulative: 0, score: 0},
+    {outcome: '3/', cumulative: 19, score: 19},
+    {outcome: '9', cumulative: 28, score: 9}
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
+
+tap.test('open spare', function (t) {
+  var gm1 = ['--', '--', '3/']
+  var result = lib(gm1)
+  var expected = [
+    {outcome: '--', cumulative: 0, score: 0},
+    {outcome: '--', cumulative: 0, score: 0},
+    {outcome: '3/', cumulative: null, score: null}
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
+
+tap.test('finalize non-spare/non-strike', function (t) {
+  var gm1 = ['--', '--', '81']
+  var result = lib(gm1)
+  var expected = [
+    {outcome: '--', cumulative: 0, score: 0},
+    {outcome: '--', cumulative: 0, score: 0},
+    {outcome: '81', cumulative: 9, score: 9}
+  ]
+  t.deepEqual(result, expected)
+  t.end()
+})
+
 tap.test('10th frame double miss', function (t) {
   var result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', '00'])
   var expected = [
