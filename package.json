@@ -7,9 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "lint": "standard",
-    "test": "NODE_ENV=test tap -R json test.js",
-    "posttest": "npm run lint"
+    "test": "NODE_ENV=test tap test.js --100 --coverage-report=text-summary && standard",
+    "fix": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -36,9 +35,9 @@
   "homepage": "https://github.com/tphummel/node-bowling",
   "devDependencies": {
     "async": "^2.0.0",
-    "standard": "^10.0.1",
+    "standard": "latest",
     "text-table": "^0.2.0",
-    "tap": "^11.0.0"
+    "tap": "latest"
   },
   "dependencies": {}
 }
