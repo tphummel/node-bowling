@@ -1,4 +1,14 @@
 
+1.3.7 / 2018-01-28
+==================
+
+  * upgrade standard
+  * upgrade node-tap
+  * add CI support for node.js 8.x
+  * enforce 100% unit test coverage
+  * add snyk and nsp scans
+  * readme badge cleanup
+
 1.3.6 / 2017-02-24
 ==================
 
