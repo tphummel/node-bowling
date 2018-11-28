@@ -1,3 +1,9 @@
+1.3.9 / 2018-11-27
+==================
+
+  * remove non-essential dev dependencies
+  * drop node 4 and 6 from ci build matrix
+  * move from travis org to com
 
 1.3.8 / 2018-01-28
 ==================
