@@ -34,9 +34,7 @@
   },
   "homepage": "https://github.com/tphummel/node-bowling",
   "devDependencies": {
-    "async": "^2.0.0",
     "standard": "latest",
-    "text-table": "^0.2.0",
     "tap": "latest"
   },
   "dependencies": {}

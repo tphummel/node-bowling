@@ -1,3 +1,5 @@
+// requires separate install of `async` and `text-table` modules
+
 var lib = require('./index')
 var async = require('async')
 var tt = require('text-table')
