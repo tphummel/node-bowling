@@ -1,9 +1,13 @@
 
 # node-bowling
 
-apply scoring logic to ten-pin bowling results. handles both incomplete and complete games.
-
 [![Build Status](https://api.travis-ci.com/tphummel/node-bowling.svg?branch=master)](https://travis-ci.com/tphummel/node-bowling) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) [![Known Vulnerabilities](https://snyk.io/test/github/tphummel/node-bowling/badge.svg?targetFile=package.json)](https://snyk.io/test/github/tphummel/node-bowling?targetFile=package.json)
+
+ 📝scorekeeping for ten pin bowling 🎳
+
+ - supports complete and incomplete games
+ - 100% test coverage
+ - zero dependencies
 
 [![NPM](https://nodei.co/npm/bowling.png?downloads=true)](https://nodei.co/npm/bowling/)
 
