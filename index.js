@@ -2,9 +2,9 @@
 
 module.exports = parseGame
 
-var tenthPattern = new RegExp('^[XF0-9-]{1}[XF0-9-/]?[XF0-9-/]?$', 'i')
-var basicPattern = new RegExp('^[XF0-9-]{1}[F0-9-/]?$', 'i')
-var zeroEquiv = new RegExp('[F-]', 'g')
+const tenthPattern = /^[XF0-9-]{1}[XF0-9-/]?[XF0-9-/]?$/i
+const basicPattern = /^[XF0-9-]{1}[F0-9-/]?$/i
+const zeroEquiv = /[F-]/g
 
 function validateFrame (frame, isTenthFrame) {
   if (frame.length === 0) {
@@ -35,14 +35,14 @@ function isSpare (frame) {
 }
 
 function scoreFrame (frame) {
-  var score
+  let score
 
   if (isStrike(frame) || isSpare(frame)) {
     score = null
   } else {
-    var addable = frame.replace(zeroEquiv, '0')
+    const addable = frame.replace(zeroEquiv, '0')
     score = 0
-    for (var c = 0; c < addable.length; c++) {
+    for (let c = 0; c < addable.length; c++) {
       score += parseInt(addable[c], 10)
       if (score > 9) {
         throw new Error('invalid frame score: ' + frame + ' = ' + score)
@@ -53,11 +53,11 @@ function scoreFrame (frame) {
 }
 
 function getRollScores (frames) {
-  var rollScores = []
-  var rolls = frames.join('').replace(zeroEquiv, '0')
+  const rollScores = []
+  const rolls = frames.join('').replace(zeroEquiv, '0')
 
-  for (var t = 0; t < rolls.length; t++) {
-    var score
+  for (let t = 0; t < rolls.length; t++) {
+    let score
 
     if (rolls[t] === 'X') {
       score = 10
@@ -74,8 +74,8 @@ function getRollScores (frames) {
 }
 
 function updateCumulatives (scoresheet) {
-  var cumulative = 0
-  for (var f = 0; f < scoresheet.length; f++) {
+  let cumulative = 0
+  for (let f = 0; f < scoresheet.length; f++) {
     if (scoresheet[f].score === null) break
 
     cumulative += scoresheet[f].score
@@ -85,8 +85,8 @@ function updateCumulatives (scoresheet) {
 }
 
 function scoreTenthFrame (frame) {
-  var score = 0
-  var isFinal = false
+  let score = 0
+  let isFinal = false
 
   if (frame.length === 3) {
     isFinal = true
@@ -112,9 +112,9 @@ function scoreTenthFrame (frame) {
 }
 
 function attemptFrameFinalize (frame, leadingFrames) {
-  var prevIsPending = frame.score === null
-  var nextScores = getRollScores(leadingFrames)
-  var bonus = 0
+  const prevIsPending = frame.score === null
+  const nextScores = getRollScores(leadingFrames)
+  let bonus = 0
 
   if (prevIsPending) {
     if (isStrike(frame.outcome)) {
@@ -132,15 +132,15 @@ function attemptFrameFinalize (frame, leadingFrames) {
 }
 
 function parseGame (game) {
-  var scoresheet = []
+  let scoresheet = []
 
   if (game.length > 10) throw new Error('too many frames')
 
-  for (var i = 0; i < game.length; i++) {
-    var isTenthFrame = i === 9
-    var notFirstFrame = i > 0
-    var notFirstTwoFrames = i > 1
-    var cleanOutcome = parseFrame(game[i], isTenthFrame)
+  for (let i = 0; i < game.length; i++) {
+    const isTenthFrame = i === 9
+    const notFirstFrame = i > 0
+    const notFirstTwoFrames = i > 1
+    const cleanOutcome = parseFrame(game[i], isTenthFrame)
 
     validateFrame(cleanOutcome, isTenthFrame)
 
@@ -150,7 +150,7 @@ function parseGame (game) {
       score: scoreFrame(cleanOutcome)
     }
 
-    var prevFrame, leadingFrames
+    let prevFrame, leadingFrames
 
     if (notFirstFrame) {
       prevFrame = scoresheet[i - 1]

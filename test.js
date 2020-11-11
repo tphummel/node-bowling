@@ -1,10 +1,10 @@
-var tap = require('tap')
-var lib = require('./')
+const tap = require('tap')
+const lib = require('./')
 
 tap.test('a complete game', function (t) {
-  var gm1 = ['81', '9-', '9/', '71', '9-', 'X', '90', '70', 'x', '7-']
-  var result = lib(gm1)
-  var expected = [
+  const gm1 = ['81', '9-', '9/', '71', '9-', 'X', '90', '70', 'x', '7-']
+  const result = lib(gm1)
+  const expected = [
     { outcome: '81', cumulative: 9, score: 9 },
     { outcome: '9-', cumulative: 18, score: 9 },
     { outcome: '9/', cumulative: 35, score: 17 },
@@ -21,9 +21,9 @@ tap.test('a complete game', function (t) {
 })
 
 tap.test('a complete game with fouls', function (t) {
-  var gm1 = ['81', '9-', '9/', '71', '9f', 'X', '9F', '70', 'x', '7-']
-  var result = lib(gm1)
-  var expected = [
+  const gm1 = ['81', '9-', '9/', '71', '9f', 'X', '9F', '70', 'x', '7-']
+  const result = lib(gm1)
+  const expected = [
     { outcome: '81', cumulative: 9, score: 9 },
     { outcome: '9-', cumulative: 18, score: 9 },
     { outcome: '9/', cumulative: 35, score: 17 },
@@ -72,8 +72,8 @@ tap.test('invalid frame should throw', function (t) {
 })
 
 tap.test('second complete game', function (t) {
-  var result = lib(['80', 'x', '1/', '7/', '90', '6-', 'x', '43', '62', '8/6'])
-  var expected = [
+  const result = lib(['80', 'x', '1/', '7/', '90', '6-', 'x', '43', '62', '8/6'])
+  const expected = [
     { outcome: '8-', cumulative: 8, score: 8 },
     { outcome: 'X', cumulative: 28, score: 20 },
     { outcome: '1/', cumulative: 45, score: 17 },
@@ -90,8 +90,8 @@ tap.test('second complete game', function (t) {
 })
 
 tap.test('strikeout to finish', function (t) {
-  var result = lib(['80', 'x', '1/', '7/', '90', '6-', 'x', '43', 'X', 'xxX'])
-  var expected = [
+  const result = lib(['80', 'x', '1/', '7/', '90', '6-', 'x', '43', 'X', 'xxX'])
+  const expected = [
     { outcome: '8-', cumulative: 8, score: 8 },
     { outcome: 'X', cumulative: 28, score: 20 },
     { outcome: '1/', cumulative: 45, score: 17 },
@@ -108,8 +108,8 @@ tap.test('strikeout to finish', function (t) {
 })
 
 tap.test('an incomplete game', function (t) {
-  var result = lib(['80', 'x', '1/', '7/', '9'])
-  var expected = [
+  const result = lib(['80', 'x', '1/', '7/', '9'])
+  const expected = [
     { outcome: '8-', cumulative: 8, score: 8 },
     { outcome: 'X', cumulative: 28, score: 20 },
     { outcome: '1/', cumulative: 45, score: 17 },
@@ -121,8 +121,8 @@ tap.test('an incomplete game', function (t) {
 })
 
 tap.test('did someone say "a perfect game"?', function (t) {
-  var result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', 'xxX'])
-  var expected = [
+  const result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', 'xxX'])
+  const expected = [
     { outcome: 'X', cumulative: 30, score: 30 },
     { outcome: 'X', cumulative: 60, score: 30 },
     { outcome: 'X', cumulative: 90, score: 30 },
@@ -139,9 +139,9 @@ tap.test('did someone say "a perfect game"?', function (t) {
 })
 
 tap.test('a complete game with all zero-spares', function (t) {
-  var gm1 = ['0/', '-/', '0/', '-/', '-/', '-/', '-/', '-/', '-/', '-/-']
-  var result = lib(gm1)
-  var expected = [
+  const gm1 = ['0/', '-/', '0/', '-/', '-/', '-/', '-/', '-/', '-/', '-/-']
+  const result = lib(gm1)
+  const expected = [
     { outcome: '-/', cumulative: 10, score: 10 },
     { outcome: '-/', cumulative: 20, score: 10 },
     { outcome: '-/', cumulative: 30, score: 10 },
@@ -158,9 +158,9 @@ tap.test('a complete game with all zero-spares', function (t) {
 })
 
 tap.test('zero frame', function (t) {
-  var gm1 = ['--']
-  var result = lib(gm1)
-  var expected = [
+  const gm1 = ['--']
+  const result = lib(gm1)
+  const expected = [
     { outcome: '--', cumulative: 0, score: 0 }
   ]
   t.deepEqual(result, expected)
@@ -168,9 +168,9 @@ tap.test('zero frame', function (t) {
 })
 
 tap.test('non-string frame', function (t) {
-  var gm1 = [13]
-  var result = lib(gm1)
-  var expected = [
+  const gm1 = [13]
+  const result = lib(gm1)
+  const expected = [
     { outcome: '13', cumulative: 4, score: 4 }
   ]
   t.deepEqual(result, expected)
@@ -178,9 +178,9 @@ tap.test('non-string frame', function (t) {
 })
 
 tap.test('closed spare', function (t) {
-  var gm1 = ['--', '--', '3/', '9']
-  var result = lib(gm1)
-  var expected = [
+  const gm1 = ['--', '--', '3/', '9']
+  const result = lib(gm1)
+  const expected = [
     { outcome: '--', cumulative: 0, score: 0 },
     { outcome: '--', cumulative: 0, score: 0 },
     { outcome: '3/', cumulative: 19, score: 19 },
@@ -191,9 +191,9 @@ tap.test('closed spare', function (t) {
 })
 
 tap.test('open spare', function (t) {
-  var gm1 = ['--', '--', '3/']
-  var result = lib(gm1)
-  var expected = [
+  const gm1 = ['--', '--', '3/']
+  const result = lib(gm1)
+  const expected = [
     { outcome: '--', cumulative: 0, score: 0 },
     { outcome: '--', cumulative: 0, score: 0 },
     { outcome: '3/', cumulative: null, score: null }
@@ -203,9 +203,9 @@ tap.test('open spare', function (t) {
 })
 
 tap.test('finalize non-spare/non-strike', function (t) {
-  var gm1 = ['--', '--', '81']
-  var result = lib(gm1)
-  var expected = [
+  const gm1 = ['--', '--', '81']
+  const result = lib(gm1)
+  const expected = [
     { outcome: '--', cumulative: 0, score: 0 },
     { outcome: '--', cumulative: 0, score: 0 },
     { outcome: '81', cumulative: 9, score: 9 }
@@ -215,8 +215,8 @@ tap.test('finalize non-spare/non-strike', function (t) {
 })
 
 tap.test('10th frame double miss', function (t) {
-  var result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', '00'])
-  var expected = [
+  const result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', '00'])
+  const expected = [
     { outcome: 'X', cumulative: 30, score: 30 },
     { outcome: 'X', cumulative: 60, score: 30 },
     { outcome: 'X', cumulative: 90, score: 30 },
@@ -233,8 +233,8 @@ tap.test('10th frame double miss', function (t) {
 })
 
 tap.test('10th frame in-progress: single strike', function (t) {
-  var result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', 'x'])
-  var expected = [
+  const result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', 'x'])
+  const expected = [
     { outcome: 'X', cumulative: 30, score: 30 },
     { outcome: 'X', cumulative: 60, score: 30 },
     { outcome: 'X', cumulative: 90, score: 30 },
@@ -251,8 +251,8 @@ tap.test('10th frame in-progress: single strike', function (t) {
 })
 
 tap.test('10th frame in-progress: double strike', function (t) {
-  var result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', 'xX'])
-  var expected = [
+  const result = lib(['x', 'x', 'x', 'X', 'x', 'X', 'X', 'X', 'X', 'xX'])
+  const expected = [
     { outcome: 'X', cumulative: 30, score: 30 },
     { outcome: 'X', cumulative: 60, score: 30 },
     { outcome: 'X', cumulative: 90, score: 30 },

@@ -1,9 +1,9 @@
 // requires separate install of `async` and `text-table` modules
 
-var lib = require('./index')
-var async = require('async')
-var tt = require('text-table')
-var progression = [
+const lib = require('./index')
+const async = require('async')
+const tt = require('text-table')
+const progression = [
   ['8'],
   ['81'],
   ['81', '9'],
@@ -25,20 +25,20 @@ var progression = [
   ['81', '9/', '9-', '71', 'x', 'f8', 'X', '0/', '36', 'x4/']
 ]
 
-var scoreboard = [
+const scoreboard = [
   ['  1', '  2', '  3', '  4', '  5', '  6', '  7', '  8', '  9', ' 10'],
   null,
   null
 ]
 
-var scoreboardFmt = {
+const scoreboardFmt = {
   align: ['r', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r']
 }
 
 process.stdout.write('\x1B[2J\n')
 
 async.eachSeries(progression, function (state, cb) {
-  var thruRoll = lib(state)
+  const thruRoll = lib(state)
 
   scoreboard[1] = thruRoll.map(function (frame) {
     return frame.outcome || ''
