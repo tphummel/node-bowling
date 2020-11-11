@@ -1,7 +1,15 @@
+
+1.3.12 / 2020-11-11
+==================
+
+  * upgrade standardjs 14 -> 16
+  * bump transitive dep: yargs-parser
+
+
 1.3.11 / 2020-07-26
 ==================
 
-  * bump two transitive deps: lodash, 
+  * bump two transitive deps: lodash,
 
 1.3.10 / 2020-01-23
 ==================
