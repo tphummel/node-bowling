@@ -1,3 +1,8 @@
+1.4.2 / 2021-04-17
+==================
+
+  * ignore .nyc_output in npm tarball. trying to get it as small as possible
+
 1.4.1 / 2021-04-17
 ==================
 
