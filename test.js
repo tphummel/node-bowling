@@ -64,6 +64,10 @@ tap.test('invalid frame should throw', function (t) {
     lib(['/9'])
   })
 
+  t.throws(function () {
+    lib(['/'])
+  })
+
   t.throws(function longFrame () {
     lib(['78xx'])
   })
