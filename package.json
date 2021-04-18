@@ -35,7 +35,7 @@
   "homepage": "https://github.com/tphummel/node-bowling",
   "devDependencies": {
     "standard": "^16.0.0",
-    "tap": "^14.10.6"
+    "tap": "^15.0.2"
   },
   "dependencies": {}
 }
