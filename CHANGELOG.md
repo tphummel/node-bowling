@@ -1,3 +1,9 @@
+1.4.0 / 2021-04-17
+==================
+
+  * dropped test matrix support for node.js 8
+  * added test matrix support for node.js 14, 15
+  * upgrade node-tap from 14->15
 
 1.3.12 / 2020-11-11
 ==================
