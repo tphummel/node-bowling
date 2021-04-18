@@ -3,9 +3,9 @@ cache:
   directories:
   - node_modules
 node_js:
-  - '8'
   - '10'
   - '12'
+  - '14'
 deploy:
   provider: npm
   email: tphummel@gmail.com
