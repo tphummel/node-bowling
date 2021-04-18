@@ -1,3 +1,8 @@
+1.4.1 / 2021-04-17
+==================
+
+  * ignore example.gif to shrink the size of the npm tarball
+
 1.4.0 / 2021-04-17
 ==================
 
