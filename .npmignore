@@ -1,3 +1,5 @@
 example.gif
 .nyc_output/
 .travis.yml
+.github/
+.gitpod.yml

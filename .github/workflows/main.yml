@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Dependencies
@@ -30,14 +30,6 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - name: setup node.js to publish to github packages
-        uses: actions/setup-node@v4
-        with:
-          registry-url: https://npm.pkg.github.com/
-      - name: Publish to GitHub Packages
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: setup node.js to publish to npm
         uses: actions/setup-node@v4
         with:
