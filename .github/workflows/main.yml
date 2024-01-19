@@ -34,21 +34,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Publish to GitHub Packages
+      - name: setup node.js to publish to github packages
         uses: actions/setup-node@v3
         with:
-          registry-url: https://npm.pkg.github.com/
           node-version: current
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Publish to GitHub Packages
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Publish to npm
+      - name: setup node.js to publish to npm
         uses: actions/setup-node@v3
         with:
-          registry-url: https://registry.npmjs.org/
           node-version: current
+          registry-url: https://npm.pkg.github.com/
+      - name: Publish to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
