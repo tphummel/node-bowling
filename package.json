@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_ENV=test tap test.js --reporter classic --coverage-report=text-summary && standard",
+    "test": "NODE_ENV=test tap test.js --coverage-report=text-summary && standard",
     "fix": "standard --fix"
   },
   "repository": {
@@ -26,7 +26,7 @@
   "author": {
     "name": "Tom Hummel",
     "email": "tphummel@gmail.com",
-    "url": "tomhummel.com"
+    "url": "https://tomhummel.com"
   },
   "license": "MIT",
   "bugs": {
@@ -37,6 +37,5 @@
     "standard": "^17.1.0",
     "tap": "^18.6.1"
   },
-  "dependencies": {},
   "gitTagVersion": false
 }
