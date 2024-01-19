@@ -1,3 +1,11 @@
+1.4.3 / 2024-01-18
+==================
+
+  * upgrade dev deps
+  * update tap tests for upgrade 16 -> 18
+  * move from travis to github actions
+  * update node.js versions to target
+
 1.4.2 / 2021-04-17
 ==================
 
