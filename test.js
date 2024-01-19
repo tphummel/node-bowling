@@ -16,7 +16,7 @@ tap.test('a complete game', function (t) {
     { outcome: 'X', cumulative: 104, score: 17 },
     { outcome: '7-', cumulative: 111, score: 7 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -35,7 +35,7 @@ tap.test('a complete game with fouls', function (t) {
     { outcome: 'X', cumulative: 104, score: 17 },
     { outcome: '7-', cumulative: 111, score: 7 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -89,7 +89,7 @@ tap.test('second complete game', function (t) {
     { outcome: '62', cumulative: 111, score: 8 },
     { outcome: '8/6', cumulative: 127, score: 16 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -107,7 +107,7 @@ tap.test('strikeout to finish', function (t) {
     { outcome: 'X', cumulative: 133, score: 30 },
     { outcome: 'XXX', cumulative: 163, score: 30 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -120,7 +120,7 @@ tap.test('an incomplete game', function (t) {
     { outcome: '7/', cumulative: 64, score: 19 },
     { outcome: '9', cumulative: 73, score: 9 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -138,7 +138,7 @@ tap.test('did someone say "a perfect game"?', function (t) {
     { outcome: 'X', cumulative: 270, score: 30 },
     { outcome: 'XXX', cumulative: 300, score: 30 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -157,7 +157,7 @@ tap.test('a complete game with all zero-spares', function (t) {
     { outcome: '-/', cumulative: 90, score: 10 },
     { outcome: '-/-', cumulative: 100, score: 10 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -167,7 +167,7 @@ tap.test('zero frame', function (t) {
   const expected = [
     { outcome: '--', cumulative: 0, score: 0 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -177,7 +177,7 @@ tap.test('non-string frame', function (t) {
   const expected = [
     { outcome: '13', cumulative: 4, score: 4 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -190,7 +190,7 @@ tap.test('closed spare', function (t) {
     { outcome: '3/', cumulative: 19, score: 19 },
     { outcome: '9', cumulative: 28, score: 9 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -202,7 +202,7 @@ tap.test('open spare', function (t) {
     { outcome: '--', cumulative: 0, score: 0 },
     { outcome: '3/', cumulative: null, score: null }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -214,7 +214,7 @@ tap.test('finalize non-spare/non-strike', function (t) {
     { outcome: '--', cumulative: 0, score: 0 },
     { outcome: '81', cumulative: 9, score: 9 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -232,7 +232,7 @@ tap.test('10th frame double miss', function (t) {
     { outcome: 'X', cumulative: 240, score: 10 },
     { outcome: '--', cumulative: 240, score: 0 }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -250,7 +250,7 @@ tap.test('10th frame in-progress: single strike', function (t) {
     { outcome: 'X', cumulative: null, score: null },
     { outcome: 'X', cumulative: null, score: null }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 
@@ -268,7 +268,7 @@ tap.test('10th frame in-progress: double strike', function (t) {
     { outcome: 'X', cumulative: 270, score: 30 },
     { outcome: 'XX', cumulative: null, score: null }
   ]
-  t.deepEqual(result, expected)
+  t.same(result, expected)
   t.end()
 })
 

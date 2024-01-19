@@ -1,9 +1,9 @@
 
 # node-bowling
 
-[![Build Status](https://api.travis-ci.com/tphummel/node-bowling.svg?branch=master)](https://travis-ci.com/tphummel/node-bowling) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) [![Known Vulnerabilities](https://snyk.io/test/github/tphummel/node-bowling/badge.svg?targetFile=package.json)](https://snyk.io/test/github/tphummel/node-bowling?targetFile=package.json)
+[![Node.js CI](https://github.com/tphummel/node-bowling/actions/workflows/main.yml/badge.svg)](https://github.com/tphummel/node-bowling/actions/workflows/main.yml) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) [![Known Vulnerabilities](https://snyk.io/test/github/tphummel/node-bowling/badge.svg?targetFile=package.json)](https://snyk.io/test/github/tphummel/node-bowling?targetFile=package.json)
 
- 📝scorekeeping for ten pin bowling 🎳
+ 📝 scorekeeping for ten pin bowling 🎳
 
  - supports complete and incomplete games
  - 100% test coverage

@@ -1,13 +1,13 @@
 {
   "name": "bowling",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "ten-pin bowling scorekeeping module",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_ENV=test tap test.js --reporter classic --100 --coverage-report=text-summary && standard",
+    "test": "NODE_ENV=test tap test.js --coverage-report=text-summary && standard",
     "fix": "standard --fix"
   },
   "repository": {
@@ -26,7 +26,7 @@
   "author": {
     "name": "Tom Hummel",
     "email": "tphummel@gmail.com",
-    "url": "tomhummel.com"
+    "url": "https://tomhummel.com"
   },
   "license": "MIT",
   "bugs": {
@@ -34,8 +34,8 @@
   },
   "homepage": "https://github.com/tphummel/node-bowling",
   "devDependencies": {
-    "standard": "^16.0.0",
-    "tap": "^15.0.2"
+    "standard": "^17.1.0",
+    "tap": "^18.6.1"
   },
-  "dependencies": {}
+  "gitTagVersion": false
 }
